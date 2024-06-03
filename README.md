@@ -1,6 +1,3 @@
-# Let's create the README.md file content for the ClinicWebsite repository
-
-readme_content = """
 # ClinicWebsite
 
 A web application designed for clinic management, built with a focus on user-friendly interfaces and efficient backend processing.
