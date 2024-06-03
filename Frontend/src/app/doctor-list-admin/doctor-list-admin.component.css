@@ -1,0 +1,18 @@
+mat-card {
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.item-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem; /* Add some spacing between each visit item */
+}
+
+.item-container button {
+  margin: 5px 0 20px 10px;
+}
+
+.list-container {
+  margin-top: 2rem;
+}

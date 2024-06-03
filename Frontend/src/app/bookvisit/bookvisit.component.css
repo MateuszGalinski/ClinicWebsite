@@ -1,0 +1,14 @@
+.inline-calendar-card {
+  width: 300px;
+}
+
+@media screen {
+  width: 80%;
+  margin-right: 3rem;
+  padding-right: 3rem;
+}
+
+.selection-fields {
+  height: 100%;
+  overflow-y: auto;
+}

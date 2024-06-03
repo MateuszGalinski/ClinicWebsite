@@ -1,0 +1,33 @@
+<h2>Select your date:</h2>
+<mat-card class="inline-calendar-card">
+  <mat-calendar [minDate]="minDate" [maxDate]="maxDate" [(selected)]="selected" (selectedChange)="onDateChange()"></mat-calendar>
+</mat-card>
+
+
+<div *ngIf="selected">
+  <h2>Select your doctor:</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Doctor</mat-label>
+    <mat-select [(value)]="selectedDoctor" (selectionChange)="onDoctorChange()" >
+      <mat-option *ngFor="let doctor of doctors" [value]="doctor">
+        Dr. {{doctor.doctorName}} {{doctor.doctorSurname}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="selected && selectedDoctor">
+  <h2>Select your time:</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Hour</mat-label>
+    <mat-select [(value)]="selectedHour">
+      <mat-option *ngFor="let hour of hours" [value]="hour" [disabled]="unavailableHours.includes(hour)">
+        {{hour}}:00
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="selected && selectedDoctor && selectedHour" (click)="onBookVisit()">
+  <button mat-raised-button color="primary">Book a visit</button>
+</div>

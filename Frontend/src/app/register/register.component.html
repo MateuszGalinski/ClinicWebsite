@@ -1,0 +1,81 @@
+<div class="register-container">
+  <div *ngIf="isSignedUp; else notSignedUp">
+    <a routerLink="/profile">
+      You have successfully registered! Click here to go to profile.
+    </a>
+  </div>
+
+  <ng-template #notSignedUp>
+    <div class="register-form">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" name="username" [(ngModel)]="form.username" #username="ngModel" required />
+          <div>
+            <mat-error *ngIf="f.submitted && username.invalid">
+              <div *ngIf="['username.errors?.required']">Username is required</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="12"/>
+          <button mat-icon-button type="button" matSuffix (click)="switchVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <div>
+            <mat-error *ngIf="f.submitted && password.invalid">
+              <div *ngIf="['password.errors?.required']">Password is required</div>
+              <div *ngIf="['password.errors?.minlength']">Password must be at least 6 characters</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+          <div>
+            <mat-error *ngIf="f.submitted && name.invalid">
+              <div *ngIf="['name.errors?.required']">Name is required</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Surname</mat-label>
+          <input matInput type="text" name="surname" [(ngModel)]="form.surname" #surname="ngModel" required />
+          <div>
+            <mat-error *ngIf="f.submitted && surname.invalid">
+              <div *ngIf="['surname.errors?.required']">Surname is required</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Telephone</mat-label>
+          <input matInput type="text" name="telephone" [(ngModel)]="form.telephone" #telephone="ngModel" required pattern="[0-9]{9}" />
+          <div>
+            <mat-error *ngIf="f.submitted && telephone.invalid">
+              <div *ngIf="['telephone.errors?.required']">Telephone is required</div>
+              <div *ngIf="['telephone.errors?.pattern']">Telephone must be 9 digits</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+
+
+        <div class="form-actions">
+          <button type="submit" mat-raised-button color="primary">Sign Up</button>
+          <div>
+            <mat-error *ngIf="f.submitted && isSignUpFailed">
+              {{ this.errorMessage }}
+            </mat-error>
+          </div>
+        </div>
+      </form>
+      <hr/>
+      <p>Already have an account?</p>
+      <button mat-raised-button color="primary" routerLink="/auth/login">Login</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,63 @@
+
+<div class="register-form">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" name="username" [(ngModel)]="form.username" #username="ngModel" required />
+      <div>
+        <mat-error *ngIf="f.submitted && username.invalid">
+          <div *ngIf="['username.errors?.required']">Username is required</div>
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="form.password" #password="ngModel" required minlength="6" maxlength="12"/>
+      <button mat-icon-button type="button" matSuffix (click)="switchVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <div>
+        <mat-error *ngIf="f.submitted && password.invalid">
+          <div *ngIf="['password.errors?.required']">Password is required</div>
+          <div *ngIf="['password.errors?.minlength']">Password must be at least 6 characters</div>
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+      <div>
+        <mat-error *ngIf="f.submitted && name.invalid">
+          <div *ngIf="['name.errors?.required']">Name is required</div>
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Surname</mat-label>
+      <input matInput type="text" name="surname" [(ngModel)]="form.surname" #surname="ngModel" required />
+      <div>
+        <mat-error *ngIf="f.submitted && surname.invalid">
+          <div *ngIf="['surname.errors?.required']">Surname is required</div>
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Specialization</mat-label>
+      <input matInput type="text" name="specialization" [(ngModel)]="form.specialization" #specialization="ngModel" required />
+      <div>
+        <mat-error *ngIf="f.submitted && specialization.invalid">
+          <div *ngIf="['telephone.errors?.required']">Specialization is required</div>
+        </mat-error>
+      </div>
+    </mat-form-field>
+
+
+    <div class="form-actions">
+      <button mat-raised-button type="submit" color="primary">SignUp New Doctor</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,45 @@
+img.profile-pic {
+  max-height: 100px;
+  max-width: 100px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.profile-pic {
+  margin-right: 10px;
+}
+
+.profile-details h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.profile-details p {
+  margin: 0;
+}
+
+mat-card {
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.redirect-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.number-of-sth {
+  padding-top: 5px;
+}
+
+.logout-button-container {
+  margin-left: auto; /* Pushes the logout button to the far right */
+  margin-right: 15px;
+}

@@ -1,0 +1,44 @@
+
+<!--<div class="login-container">-->
+<!--  <div *ngIf="isS; else loggedOut">-->
+<!--    <a routerLink="/profile">-->
+<!--      You are logged in! Click this to go to profile.-->
+<!--    </a>-->
+<!--  </div>-->
+
+<!--  <ng-template #loggedOut>-->
+    <div class="admin-form">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" name="username" [(ngModel)]="form.username" #username="ngModel" required />
+          <div>
+            <mat-error *ngIf="f.submitted && username.invalid">
+              <div *ngIf="['username.errors?.required']">Username is required</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"
+                 name="password" [(ngModel)]="form.password"
+                 #password="ngModel"
+                 required minlength="6"
+                 maxlength="12"/>
+          <button mat-icon-button type="button" matSuffix (click)="switchVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <div>
+            <mat-error *ngIf="f.submitted && password.invalid">
+              <div *ngIf="['password.errors?.required']">Password is required</div>
+              <div *ngIf="['password.errors?.minlength']">Password must be at least 6 characters</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <div class="form-actions">
+          <button mat-raised-button color="primary">SignUp New Admin</button>
+        </div>
+      </form>
+    </div>
+<!--  </ng-template>-->
+<!--</div>-->

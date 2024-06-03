@@ -1,0 +1,54 @@
+<div class="justify-to-rest">
+  <div class="filter-buttons-div">
+    <button mat-raised-button [color]="currentFilter === Filter.All ? 'primary' : undefined" (click)="setFilter(Filter.All)">
+      All
+    </button>
+    <button mat-raised-button [color]="currentFilter === Filter.Future ? 'primary' : undefined" (click)="setFilter(Filter.Future)">
+      Future
+    </button>
+    <button mat-raised-button [color]="currentFilter === Filter.Past ? 'primary' : undefined" (click)="setFilter(Filter.Past)">
+      Past
+    </button>
+  </div>
+</div>
+
+<mat-form-field class="justify-to-rest">
+  <mat-label>Search Patient</mat-label>
+  <input matInput placeholder="Enter patient name" [(ngModel)]="patientSearchQuery" (ngModelChange)="filterVisits()">
+</mat-form-field>
+
+<div>
+  <div *ngFor="let visit of filteredVisitList" class="visit-container">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ visit.date }} {{ visit.hour }}:00
+        </mat-panel-title>
+        <mat-panel-description>
+          Visit with: {{ visit.patientName }} {{ visit.patientSurname }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="visit.prescription?.prescriptionContent">
+        <p> Prescription: </p>
+        <p> {{ visit.prescription?.prescriptionContent }} </p>
+        <p> expiration date: {{ visit.prescription?.expirationDate }} </p>
+        <p> prescription code: {{ visit.prescription?.prescriptionCode }} </p>
+      </div>
+      <div *ngIf="!isFutureVisit(visit) && visit.prescription == null">
+        <mat-form-field appearance="fill">
+          <mat-label>Prescription</mat-label>
+          <textarea matInput placeholder="Enter prescription" [(ngModel)]="visitTextMap[visit.id.toString()]"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="addPrescription(visit)">
+          Add Prescription
+        </button>
+      </div>
+      <div *ngIf="isFutureVisit(visit)">
+        <p>No prescription yet!</p>
+      </div>
+    </mat-expansion-panel>
+    <button *ngIf="!isFutureVisit(visit) && visit.prescription == null" mat-raised-button color="accent">
+      Needs prescription
+    </button>
+  </div>
+</div>

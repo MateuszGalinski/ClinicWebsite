@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Clinic</h1>
+</mat-toolbar>
+
+<mat-sidenav-container autosize>
+  <mat-sidenav [opened]="true" mode="side">
+    <mat-nav-list>
+      <a mat-list-item routerLink="home">
+        <span class="entry" >
+          <mat-icon>house</mat-icon>
+          <span *ngIf="!isCollapsed">Home</span>
+        </span>
+      </a>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="profile">
+        <span class="entry">
+          <mat-icon>person</mat-icon>
+          <span *ngIf="!isCollapsed">Profile</span>
+        </span>
+      </a>
+      <a *ngIf="isUser()" mat-list-item routerLink="visits">
+        <span class="entry">
+          <mat-icon>calendar_month</mat-icon>
+          <span *ngIf="!isCollapsed">Visits</span>
+        </span>
+      </a>
+      <a *ngIf="isDoctor()" mat-list-item routerLink="doctor-visits">
+        <span class="entry">
+          <mat-icon>calendar_month</mat-icon>
+          <span *ngIf="!isCollapsed">Doctors Visits</span>
+        </span>
+      </a>
+      <a *ngIf="!isLoggedIn" mat-list-item routerLink="auth/login">
+        <span class="entry">
+          <mat-icon>login</mat-icon>
+          <span *ngIf="!isCollapsed">Login</span>
+        </span>
+      </a>
+      <a *ngIf="isUser()" mat-list-item routerLink="booking">
+        <span class="entry">
+          <mat-icon>library_add</mat-icon>
+          <span *ngIf="!isCollapsed">Book a visit</span>
+        </span>
+      </a>
+      <a *ngIf="isAdmin()" mat-list-item routerLink="admin-panel">
+        <span class="entry">
+          <mat-icon>add</mat-icon>
+          <span *ngIf="!isCollapsed">Add employees</span>
+        </span>
+      </a>
+      <a *ngIf="isAdmin()" mat-list-item routerLink="admin-doctor-list">
+        <span class="entry">
+          <mat-icon>apps</mat-icon>
+          <span *ngIf="!isCollapsed">Manage doctors</span>
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

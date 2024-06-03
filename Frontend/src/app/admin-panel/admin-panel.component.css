@@ -1,0 +1,6 @@
+.make-a-row {
+  display: flex;
+  justify-content: center;  /* Adjust based on your alignment needs */
+  align-items: flex-start;  /* Adjust based on your alignment needs */
+  gap: 2rem;                /* Optional: Add space between forms */
+}

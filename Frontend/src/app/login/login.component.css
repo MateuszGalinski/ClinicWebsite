@@ -1,0 +1,31 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.login-form {
+  max-width: 350px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 4rem;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-actions {
+  display: flex;
+
+  align-items: center;
+}
+
+mat-error div {
+  display: block;
+  margin-bottom: 4px; /* Optional: Add space between error messages */
+}

@@ -1,0 +1,15 @@
+<h1>Manage doctors</h1>
+<div class="list-container">
+  <div *ngFor="let doctor of doctorsList" class="item-container">
+    <mat-card>
+      <mat-card-content>
+        <div> Doctor id: {{doctor.id}} </div>
+        <div> Name: {{doctor.doctorName}} </div>
+        <div> Surname: {{doctor.doctorSurname}} </div>
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button color="warn" (click)="deleteDoctor(doctor.id)">
+      Delete
+    </button>
+  </div>
+</div>

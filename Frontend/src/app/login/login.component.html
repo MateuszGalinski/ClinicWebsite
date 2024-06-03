@@ -1,0 +1,50 @@
+
+<div class="login-container">
+  <div *ngIf="isLoggedIn; else loggedOut">
+    <a routerLink="/profile">
+      You are logged in! Click this to go to profile.
+    </a>
+  </div>
+
+  <ng-template #loggedOut>
+    <div class="login-form">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" name="username" [(ngModel)]="form.username" #username="ngModel" required />
+          <div>
+            <mat-error *ngIf="f.submitted && username.invalid">
+              <div *ngIf="['username.errors?.required']">Username is required</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"
+                 name="password" [(ngModel)]="form.password"
+                 #password="ngModel"
+                 required minlength="6"
+                  maxlength="12"/>
+          <button mat-icon-button type="button" matSuffix (click)="switchVisibility()" (keydown)="onSubmit()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <div>
+            <mat-error *ngIf="f.submitted && password.invalid">
+              <div *ngIf="['password.errors?.required']">Password is required</div>
+              <div *ngIf="['password.errors?.minlength']">Password must be at least 6 characters</div>
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <div class="form-actions">
+          <button mat-raised-button type="submit" color="primary">Login</button>
+          <mat-error *ngIf="f.submitted && isLoginFailed">
+            Login failed
+          </mat-error>
+        </div>
+      </form>
+      <hr/>
+      <p>Don't have an account?</p>
+      <button mat-raised-button color="primary" routerLink="/signup">Sign Up</button>
+    </div>
+  </ng-template>
+</div>

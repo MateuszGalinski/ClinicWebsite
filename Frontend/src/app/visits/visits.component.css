@@ -1,0 +1,51 @@
+mat-card {
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+mat-expansion-panel {
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.redirect-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.number-of-sth {
+  padding-top: 5px;
+}
+
+.filter-buttons-div {
+  margin: 2rem auto 2rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-buttons-div button {
+  flex: 1; /* Allow buttons to grow evenly */
+  margin: 0 5px; /* Add some margin between buttons */
+}
+
+
+.justify-to-rest {
+  width: 75%;
+}
+
+.visit-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem; /* Add some spacing between each visit item */
+}
+
+.visit-container mat-expansion-panel {
+  width: 75%;
+}
+
+.visit-container button {
+  margin: 0 1rem 1rem 1rem;
+
+  width: 10%;
+}
+

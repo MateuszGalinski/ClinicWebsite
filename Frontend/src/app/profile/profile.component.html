@@ -1,0 +1,90 @@
+
+
+<div class="profile">
+  <img src="assets/user.png" alt="User profile picture" class="profile-pic">
+  <div class="profile-details">
+    <h1>{{info.username}}</h1>
+    <p>{{listRole()}}</p>
+  </div>
+  <span class="logout-button-container">
+    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+  </span>
+</div>
+
+<div *ngIf="isUser()">
+  <ng-container *ngTemplateOutlet="patientProfile"></ng-container>
+</div>
+
+<div *ngIf="isDoctor()">
+  <ng-container *ngTemplateOutlet="doctorProfile"></ng-container>
+</div>
+
+<div *ngIf="listRole() == 'Admin'">
+  <ng-container *ngTemplateOutlet="adminProfile"></ng-container>
+</div>
+
+<ng-template #patientProfile>
+  <mat-card class="card">
+    <mat-card-content>
+      <div>You have visits to attend:</div>
+      <div class="number-of-sth" >{{ numberOfVisits }}</div>
+      <span class="redirect-button-container">
+        <button mat-raised-button color="primary" (click)="redirectTo('visits')">View Visits</button>
+      </span>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card">
+    <mat-card-content>
+      <div>You have prescriptions that are up to date:</div>
+      <div class="number-of-sth" >{{ numberOfPrescriptions }}</div>
+      <span class="redirect-button-container">
+        <button mat-raised-button color="primary" (click)="redirectTo('visits')">View Prescriptions</button>
+      </span>
+
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<ng-template #doctorProfile>
+  <mat-card class="card">
+    <mat-card-content>
+      <div>You have visits to attend:</div>
+      <div class="number-of-sth" >{{ numberOfVisits }}</div>
+      <span class="redirect-button-container">
+        <button mat-raised-button color="primary" (click)="redirectTo('doctor-visits')">View Visits</button>
+      </span>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card">
+    <mat-card-content>
+      <div>You have visits that need prescription to be filled:</div>
+      <div class="number-of-sth" >{{ numberOfPrescriptionsToFill }}</div>
+      <span class="redirect-button-container">
+        <button mat-raised-button color="primary" (click)="redirectTo('doctor-visits')">View Prescriptions</button>
+      </span>
+
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<ng-template #adminProfile>
+  <mat-card class="card">
+    <mat-card-content>
+      <div>Add doctors and admins</div>
+      <span class="redirect-button-container">
+        <button mat-raised-button color="primary" (click)="redirectTo('admin-panel')">Add</button>
+      </span>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card">
+    <mat-card-content>
+      <div>Manage doctors</div>
+      <span class="redirect-button-container">
+        <button mat-raised-button color="primary" (click)="redirectTo('admin-doctor-list')">View</button>
+      </span>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

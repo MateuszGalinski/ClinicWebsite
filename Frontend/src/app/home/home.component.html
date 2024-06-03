@@ -1,0 +1,33 @@
+<!--<div *ngIf="info.token != '{}'; else loggedOut" class="home-container">-->
+<!--  <div class="doctor-image">-->
+<!--    <h2>Welcome to clinic</h2>-->
+<!--    <img src="assets/doctorPhoto.jpg" alt="Doctor picture" class="doctor-pic">-->
+<!--  </div>-->
+<!--  <div class="home-buttons">-->
+<!--    <button mat-raised-button color="primary" routerLink="/profile">Go to Profile</button>-->
+<!--    <button mat-raised-button color="accent" routerLink="/visits">View Visits</button>-->
+<!--    <button mat-raised-button color="warn" (click)="logout()">Logout</button>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<ng-template #loggedOut>-->
+<!--  <div class="logged-out-message">-->
+<!--    <h2>Please login to access your account</h2>-->
+<!--    <button mat-raised-button color="primary" routerLink="/auth/login">Login</button>-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+<div>
+  <div class="top-buttons-container">
+    <button *ngIf="info.token != '{}'" mat-raised-button color="primary" routerLink="/profile">Go to Profile</button>
+    <button *ngIf="isUser()" mat-raised-button color="accent" routerLink="/visits">View Visits</button>
+    <button *ngIf="isDoctor()" mat-raised-button color="accent" routerLink="/doctor-visits">View Visits</button>
+    <button *ngIf="info.token != '{}'" mat-raised-button color="warn" (click)="logout()">Logout</button>
+    <button *ngIf="info.token == '{}'" mat-raised-button color="primary" routerLink="/auth/login">Log in</button>
+  </div>
+
+  <div class="image-container">
+    <img src="assets/clinicPhoto.jpg" alt="Clinic photo" class="background-photo">
+    <div class="slogan">Manage Your Visits With Us!</div>
+  </div>
+</div>
